@@ -1,0 +1,19 @@
+apiVersion: sandbox.sandbox-factory.io/v1alpha1
+kind: Sandbox
+metadata:
+  labels:
+    app.kubernetes.io/name: sandbox-factory
+    app.kubernetes.io/managed-by: kustomize
+  name: sandbox-sample
+spec:
+  image: busybox:1.36
+  command: ["sleep"]
+  args: ["3600"]
+  ttlSecondsAfterCreation: 3600
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi

@@ -15,3 +15,15 @@ jobs:
   lint-commits:
     if: github.event_name == 'push'
     uses: nickdemianchuk/actions/.github/workflows/lint-commits.yml@main
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-go@v7.0.0
+        with:
+          go-version-file: go.mod
+          cache: true
+      - run: make vet
+      - run: make lint
+      - run: make test
